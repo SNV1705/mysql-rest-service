@@ -45,7 +45,8 @@ public class UserController {
     @PutMapping(path = "/{username}")
     public User update(@PathVariable("username") String username, @RequestBody User user) throws BadHttpRequest {
         if (repository.exists(username)) {
-            user.setUsername(username);
+            //user.setUsername(username);
+            repository.delete(username);
             return repository.save(user);
         } else {
             throw new BadHttpRequest();
